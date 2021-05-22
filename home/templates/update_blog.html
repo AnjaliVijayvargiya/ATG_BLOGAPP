@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+
+<div class="container mt-5">
+
+    <a href="{% url 'see_blog' %}" class="btn btn-warning">View/Edit Your blogs</a>
+
+    <form method="post" class="mt-5 pt-5 mb-5 pb-5" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12">
+                <label>Enter blog title</label>
+                <input type="text" value="{{blog_obj.title}}" class="form-control" placeholder="Enter title" name="title">
+            </div>
+
+            <div class="col-md-12">
+                {{form.media}}
+                {{form.as_p}}
+            </div>
+
+           <div class="col-md-12">
+                <label for="">Upload Image</label><br>
+                Previous Image: <span style="color:blue";>{{image1}}</span> If you want to change it, select another image.
+                <input type="file" name="image" class="form-control" >
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary mt-4" >Update Blog</button>
+        </div>
+        <div>
+            <a href="{% url 'home' %}" class="btn btn-success my-2">Back to Articles Page</a>
+        </div>
+
+    </form>
+
+</div>
+
+
+{% endblock %}
